@@ -1,7 +1,11 @@
-FROM n8nio/n8n
+# Usa a imagem oficial do n8n
+FROM n8nio/n8n:latest
 
-# Render usa a variável interna $PORT, precisamos expor ela
-EXPOSE $PORT
+# Define o diretório de trabalho
+WORKDIR /data
 
-# Comando para iniciar o n8n usando a porta dinâmica do Render
-CMD ["n8n", "start", "--port", "$PORT"]
+# Expõe a porta (Render usa a env $PORT)
+EXPOSE 10000
+
+# Comando de inicialização
+CMD ["n8n"]

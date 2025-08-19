@@ -3,13 +3,16 @@ services:
     name: n8n-docker
     env: docker
     plan: free
+    dockerfilePath: ./Dockerfile
     autoDeploy: true
     envVars:
-      - key: N8N_HOST
-        value: n8n-docker.onrender.com
-      - key: N8N_PROTOCOL
-        value: https
       - key: N8N_ENCRYPTION_KEY
         sync: false
+      - key: GENERIC_TIMEZONE
+        value: America/Sao_Paulo
+      - key: N8N_HOST
+        value: n8n-docker-pa6i.onrender.com
+      - key: N8N_PORT
+        value: 10000
       - key: WEBHOOK_URL
-        value: https://n8n-docker.onrender.com/
+        value: https://n8n-docker-pa6i.onrender.com/
