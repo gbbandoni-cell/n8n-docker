@@ -1,11 +1,14 @@
-# Usa a imagem oficial do n8n
-FROM n8nio/n8n:latest
+# Usa imagem oficial do Node
+FROM node:18
 
-# Define o diretório de trabalho
+# Cria diretório de trabalho
 WORKDIR /data
 
-# Expõe a porta (Render usa a env $PORT)
-EXPOSE 10000
+# Instala n8n globalmente
+RUN npm install -g n8n
 
-# Comando de inicialização
-CMD ["n8n"]
+# Expõe a porta
+EXPOSE 5678
+
+# Comando para iniciar
+CMD ["n8n", "start"]
