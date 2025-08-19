@@ -3,15 +3,9 @@ services:
     name: n8n-docker
     env: docker
     plan: free
-    dockerfilePath: ./Dockerfile
+    autoDeploy: true
     envVars:
-      - key: N8N_BASIC_AUTH_ACTIVE
-        value: "true"
       - key: N8N_BASIC_AUTH_USER
-        value: "admin"
+        sync: false
       - key: N8N_BASIC_AUTH_PASSWORD
-        value: "admin"
-      - key: N8N_PORT
-        value: "10000"
-      - key: N8N_HOST
-        value: "0.0.0.0"
+        sync: false

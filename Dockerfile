@@ -1,14 +1,14 @@
-# Usa imagem oficial do Node
-FROM node:18
+FROM node:18-alpine
 
-# Cria diretório de trabalho
-WORKDIR /data
+# Criar diretório de trabalho
+WORKDIR /app
 
-# Instala n8n globalmente
+# Instalar n8n globalmente
 RUN npm install -g n8n
 
-# Expõe a porta
-EXPOSE 5678
+# Expor a porta dinâmica do Render
+ENV PORT=5678
+EXPOSE ${PORT}
 
-# Comando para iniciar
+# Comando de inicialização
 CMD ["n8n", "start"]

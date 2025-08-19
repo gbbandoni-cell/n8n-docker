@@ -1,13 +1,15 @@
-version: "3.1"
+version: "3.7"
 
 services:
   n8n:
-    build: .
+    image: n8nio/n8n
+    restart: always
     ports:
-      - "5678:5678"
+      - "${PORT:-5678}:5678"
     environment:
       - N8N_BASIC_AUTH_ACTIVE=true
-      - N8N_BASIC_AUTH_USER=admin
-      - N8N_BASIC_AUTH_PASSWORD=admin
-      - N8N_PORT=5678
-      - N8N_HOST=0.0.0.0
+      - N8N_BASIC_AUTH_USER=${N8N_BASIC_AUTH_USER}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD}
+      - N8N_HOST=n8n-docker.onrender.com
+      - WEBHOOK_URL=https://n8n-docker.onrender.com/
+      - GENERIC_TIMEZONE=America/Sao_Paulo
