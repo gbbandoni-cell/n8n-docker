@@ -1,7 +1,7 @@
-FROM n8nio/n8n:latest
+FROM n8nio/n8n
 
-WORKDIR /data
+# Render usa a variável interna $PORT, precisamos expor ela
+EXPOSE $PORT
 
-EXPOSE 5678
-
-CMD ["n8n"]
+# Comando para iniciar o n8n usando a porta dinâmica do Render
+CMD ["n8n", "start", "--port", "$PORT"]

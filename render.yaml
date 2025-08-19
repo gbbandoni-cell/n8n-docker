@@ -1,16 +1,15 @@
 services:
   - type: web
-    name: n8n
+    name: n8n-docker
     env: docker
     plan: free
-    dockerfilePath: ./Dockerfile
     autoDeploy: true
     envVars:
-      - key: N8N_BASIC_AUTH_ACTIVE
-        value: "true"
-      - key: N8N_BASIC_AUTH_USER
-        value: "admin"
-      - key: N8N_BASIC_AUTH_PASSWORD
-        value: "admin123"
-      - key: GENERIC_TIMEZONE
-        value: "America/Sao_Paulo"
+      - key: N8N_HOST
+        value: n8n-docker.onrender.com
+      - key: N8N_PROTOCOL
+        value: https
+      - key: N8N_ENCRYPTION_KEY
+        sync: false
+      - key: WEBHOOK_URL
+        value: https://n8n-docker.onrender.com/
