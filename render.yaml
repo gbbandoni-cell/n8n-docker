@@ -2,10 +2,30 @@ services:
   - type: web
     name: n8n-docker
     env: docker
-    plan: free
-    autoDeploy: true
+    plan: free   # change to 'starter' or higher to avoid hibernation
+    # leave startCommand empty so Dockerfile's CMD runs
+    startCommand: ""
     envVars:
-      - key: N8N_BASIC_AUTH_USER
-        sync: false
-      - key: N8N_BASIC_AUTH_PASSWORD
-        sync: false
+      - key: N8N_PROTOCOL
+        value: "https"
+      - key: N8N_ENCRYPTION_KEY
+        value: "CHANGE-ME-TO-A-32-CHAR-SECRET"
+      - key: GENERIC_TIMEZONE
+        value: "America/Sao_Paulo"
+      # Uncomment and fill if using Postgres in production
+      # - key: DB_TYPE
+      #   value: "postgresdb"
+      # - key: DB_POSTGRESDB_HOST
+      #   value: "<host>"
+      # - key: DB_POSTGRESDB_PORT
+      #   value: "5432"
+      # - key: DB_POSTGRESDB_DATABASE
+      #   value: "<database>"
+      # - key: DB_POSTGRESDB_USER
+      #   value: "<user>"
+      # - key: DB_POSTGRESDB_PASSWORD
+      #   value: "<password>"
+      # - key: DB_POSTGRESDB_SCHEMA
+      #   value: "public"
+      # - key: DB_POSTGRESDB_SSL
+      #   value: "true"

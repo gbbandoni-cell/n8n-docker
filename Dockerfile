@@ -1,14 +1,20 @@
-FROM node:18-alpine
+# Use Node 22 (n8n new versions require Node >= 20)
+FROM node:22-alpine
 
-# Criar diretório de trabalho
+ENV NODE_ENV=production
+
+# Working directory
 WORKDIR /app
 
-# Instalar n8n globalmente
+# Install n8n globally
 RUN npm install -g n8n
 
-# Expor a porta dinâmica do Render
-ENV PORT=5678
-EXPOSE ${PORT}
+# Add the start script that maps Render's $PORT into N8N_PORT and runs n8n
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
 
-# Comando de inicialização
-CMD ["n8n", "start"]
+# Default port (for local/dev only). Render will inject $PORT.
+EXPOSE 5678
+
+# IMPORTANT: keep Render's "Docker Command" empty.
+CMD ["start.sh"]
